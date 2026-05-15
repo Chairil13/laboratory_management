@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2026 at 12:32 AM
+-- Generation Time: May 15, 2026 at 01:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `assets` (
 --
 
 INSERT INTO `assets` (`id`, `code`, `name`, `category_id`, `total_quantity`, `available_quantity`, `location`, `condition`, `description`, `created_at`, `updated_at`) VALUES
-(5, 'FL01', 'Forklift001', 5, 2, 2, 'CY', 'baik', '', '2026-05-11 23:49:57', NULL);
+(6, 'bd-01', 'Infokus', 6, 10, 10, 'Gedung A lantai 1', 'baik', 'contoh', '2026-05-12 18:26:15', '2026-05-12 20:33:28');
 
 -- --------------------------------------------------------
 
@@ -67,6 +67,13 @@ CREATE TABLE `borrowings` (
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `borrowings`
+--
+
+INSERT INTO `borrowings` (`id`, `borrow_code`, `user_id`, `borrow_date`, `return_date`, `purpose`, `status`, `notes`, `created_at`, `updated_at`) VALUES
+(8, 'BRW-20260512-5313', 3, '2026-05-13', '2026-05-20', 'untuk presentasi di matakuliah elekro', 'returned', NULL, '2026-05-12 18:27:48', '2026-05-12 20:33:28');
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +86,13 @@ CREATE TABLE `borrow_details` (
   `asset_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `borrow_details`
+--
+
+INSERT INTO `borrow_details` (`id`, `borrowing_id`, `asset_id`, `quantity`) VALUES
+(7, 8, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +113,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(5, 'Alat angkut', '', '2026-05-11 23:49:24', NULL);
+(6, 'Penunjang Belajar', 'contoh', '2026-05-12 18:24:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -116,6 +130,15 @@ CREATE TABLE `notifications` (
   `is_read` tinyint(1) DEFAULT 0,
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `user_id`, `title`, `message`, `type`, `is_read`, `created_at`) VALUES
+(9, 3, 'Peminjaman Disetujui', 'Peminjaman dengan kode BRW-20260512-5313 telah disetujui', 'success', 0, '2026-05-12 18:29:57'),
+(10, 3, 'Pengembalian Diajukan', 'Pengembalian untuk peminjaman BRW-20260512-5313 sedang diproses admin', 'info', 0, '2026-05-12 18:32:51'),
+(11, 3, 'Pengembalian Disetujui', 'Pengembalian untuk peminjaman BRW-20260512-5313 telah disetujui', 'success', 0, '2026-05-12 18:33:28');
 
 -- --------------------------------------------------------
 
@@ -135,6 +158,13 @@ CREATE TABLE `returns` (
   `notes` text DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `returns`
+--
+
+INSERT INTO `returns` (`id`, `borrowing_id`, `return_date`, `condition`, `status`, `verified_by`, `verified_at`, `rejection_reason`, `notes`, `created_at`) VALUES
+(3, 8, '2026-05-12 18:32:51', 'rusak berat', 'returned', 1, '2026-05-12 18:33:28', NULL, 'sorry pak, infokus sempat jatuh dari lantai 2', '2026-05-12 18:32:51');
 
 -- --------------------------------------------------------
 
@@ -160,9 +190,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `nim_nip`, `email`, `username`, `password`, `role`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'ADMIN001', 'admin@lab.com', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '2026-05-12 01:45:34', '2026-05-04 23:53:47', '2026-05-12 01:45:34'),
-(2, 'Kepala Lab', 'KEPALA001', 'kepala@lab.com', 'kepala_lab', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'kepala_lab', '2026-05-12 01:46:12', '2026-05-04 23:53:47', '2026-05-12 01:46:12'),
-(3, 'User Demo', 'USER001', 'user@lab.com', 'user', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user', '2026-05-12 01:45:50', '2026-05-04 23:53:47', '2026-05-12 01:45:50');
+(1, 'Administrator', 'ADMIN001', 'admin@lab.com', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '2026-05-12 20:33:14', '2026-05-04 23:53:47', '2026-05-12 20:33:14'),
+(2, 'Kepala Lab', 'KEPALA001', 'kepala@lab.com', 'kepala_lab', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'kepala_lab', '2026-05-12 20:28:37', '2026-05-04 23:53:47', '2026-05-12 20:28:37'),
+(3, 'User Demo', 'USER001', 'user@lab.com', 'user', '$2y$10$V6NqyHpdI4tyF5vj2SpvFe036nNM8ikrxODfs2fomvelk9iQzhMl6', 'user', '2026-05-12 20:37:07', '2026-05-04 23:53:47', '2026-05-12 20:37:07');
 
 --
 -- Indexes for dumped tables
@@ -231,37 +261,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `borrowings`
 --
 ALTER TABLE `borrowings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `borrow_details`
 --
 ALTER TABLE `borrow_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `returns`
 --
 ALTER TABLE `returns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
