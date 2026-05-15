@@ -7,8 +7,8 @@
             <span class="material-symbols-outlined text-white text-2xl">science</span>
         </div>
         <div>
-            <h2 class="text-base font-semibold text-gray-800">Lab System</h2>
-            <p class="text-xs text-gray-600">Smart Management</p>
+            <h2 class="text-base font-semibold text-gray-800">Sistem Lab</h2>
+            <p class="text-xs text-gray-600">Manajemen Cerdas</p>
         </div>
     </div>
 
@@ -16,32 +16,44 @@
     <nav class="p-4 space-y-1">
         <a href="<?= BASE_URL ?>dashboard" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
             <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-emerald-600 transition-colors">dashboard</span>
-            <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Dashboard</span>
+            <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Dasbor</span>
         </a>
 
         <?php if (getUserRole() === 'admin'): ?>
+            <?php
+            require_once '../app/models/ReturnModel.php';
+            $returnModel = new ReturnModel();
+            $pendingReturnCount = $returnModel->getPendingCount();
+            ?>
             <a href="<?= BASE_URL ?>asset" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'asset') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
                 <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-emerald-600 transition-colors">inventory_2</span>
-                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Assets</span>
+                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Aset</span>
             </a>
             <a href="<?= BASE_URL ?>category" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'category') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
                 <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-purple-600 transition-colors">category</span>
-                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Categories</span>
+                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Kategori</span>
             </a>
             <a href="<?= BASE_URL ?>user" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'user') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
                 <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-violet-600 transition-colors">group</span>
-                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Users</span>
+                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Pengguna</span>
             </a>
-            <a href="<?= BASE_URL ?>return/verifications" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'return/verifications') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
-                <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-amber-600 transition-colors">fact_check</span>
-                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Verifikasi Pengembalian</span>
+            <a href="<?= BASE_URL ?>return/verifications" class="group flex items-center justify-between px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'return/verifications') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-amber-600 transition-colors">fact_check</span>
+                    <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Verifikasi Pengembalian</span>
+                </div>
+                <?php if ($pendingReturnCount > 0): ?>
+                    <span class="flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
+                        <?= $pendingReturnCount ?>
+                    </span>
+                <?php endif; ?>
             </a>
         <?php endif; ?>
 
         <?php if (getUserRole() === 'user'): ?>
             <a href="<?= BASE_URL ?>borrow" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 <?= strpos($_SERVER['REQUEST_URI'], 'borrow') !== false ? 'bg-white/40 shadow-sm' : '' ?>">
                 <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-amber-600 transition-colors">shopping_bag</span>
-                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">My Borrowings</span>
+                <span class="font-medium text-gray-700 group-hover:text-gray-900 text-sm">Peminjaman Saya</span>
             </a>
             <a href="<?= BASE_URL ?>borrow/create" class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/30 transition-all duration-300">
                 <span class="material-symbols-outlined text-xl text-gray-700 group-hover:text-emerald-600 transition-colors">add_circle</span>

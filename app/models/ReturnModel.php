@@ -22,6 +22,14 @@ class ReturnModel extends Model {
         return $stmt->fetch();
     }
 
+    public function getPendingCount() {
+        $query = "SELECT COUNT(*) as total FROM {$this->table} WHERE status = 'pending_return'";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return (int)($result['total'] ?? 0);
+    }
+
     public function getPendingReturns() {
         $query = "SELECT r.*, b.borrow_code, u.name as user_name, u.nim_nip
                   FROM {$this->table} r 

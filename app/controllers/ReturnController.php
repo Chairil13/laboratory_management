@@ -108,9 +108,9 @@ class ReturnController extends Controller {
         // Get borrow details to update stock
         $details = $this->borrowDetailModel->getByBorrowingId($return['borrowing_id']);
         
-        // Return stock
+        // Return stock and update condition
         foreach ($details as $detail) {
-            $this->assetModel->updateStock($detail['asset_id'], $detail['quantity'], 'increase');
+            $this->assetModel->updateConditionOnReturn($detail['asset_id'], $detail['quantity'], $return['condition']);
         }
 
         // Update return status

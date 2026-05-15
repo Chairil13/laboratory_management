@@ -75,12 +75,12 @@
                                             'pending_return' => 'bg-purple-100 text-purple-700'
                                         ];
                                         $statusLabel = [
-                                            'pending'   => 'Pending',
+                                            'pending'   => 'Menunggu Verifikasi Peminjaman',
                                             'approved'  => 'Approved',
                                             'rejected'  => 'Rejected',
                                             'returned'  => 'Returned',
                                             'cancelled' => 'Cancelled',
-                                            'pending_return' => 'Menunggu Verifikasi'
+                                            'pending_return' => 'Menunggu Verifikasi Pengembalian'
                                         ];
                                         ?>
                                         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $statusClass[$borrow['status']] ?? 'bg-gray-100 text-gray-600' ?>">

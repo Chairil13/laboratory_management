@@ -5,6 +5,7 @@ class BorrowController extends Controller {
     private $assetModel;
     private $borrowDetailModel;
     private $notificationModel;
+    private $returnModel;
 
     public function __construct() {
         $this->requireLogin();
@@ -12,6 +13,7 @@ class BorrowController extends Controller {
         $this->assetModel = $this->model('Asset');
         $this->borrowDetailModel = $this->model('BorrowDetail');
         $this->notificationModel = $this->model('Notification');
+        $this->returnModel = $this->model('ReturnModel');
     }
 
     public function index() {
@@ -33,6 +35,29 @@ class BorrowController extends Controller {
         $this->checkRole(['user']);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $assetIds  = $_POST['asset_id'];
+            $quantities = $_POST['quantity'];
+
+            // Validasi stok sebelum menyimpan
+            for ($i = 0; $i < count($assetIds); $i++) {
+                $asset = $this->assetModel->getById($assetIds[$i]);
+                if (!$asset) {
+                    setFlash('danger', 'Aset tidak ditemukan');
+                    $this->redirect('borrow/create');
+                    return;
+                }
+                if ((int)$quantities[$i] < 1) {
+                    setFlash('danger', 'Jumlah peminjaman minimal 1');
+                    $this->redirect('borrow/create');
+                    return;
+                }
+                if ((int)$quantities[$i] > (int)$asset['available_quantity']) {
+                    setFlash('danger', 'Jumlah peminjaman ' . $asset['name'] . ' melebihi stok tersedia (' . $asset['available_quantity'] . ')');
+                    $this->redirect('borrow/create');
+                    return;
+                }
+            }
+
             $borrowCode = 'BRW-' . date('Ymd') . '-' . rand(1000, 9999);
             
             $borrowData = [
@@ -47,10 +72,6 @@ class BorrowController extends Controller {
 
             if ($this->borrowingModel->create($borrowData)) {
                 $borrowingId = $this->borrowingModel->lastInsertId();
-                
-                // Create borrow details
-                $assetIds = $_POST['asset_id'];
-                $quantities = $_POST['quantity'];
                 
                 for ($i = 0; $i < count($assetIds); $i++) {
                     $detailData = [
@@ -80,7 +101,8 @@ class BorrowController extends Controller {
         $data = [
             'title' => 'Detail Peminjaman',
             'borrowing' => $this->borrowingModel->getById($id),
-            'details' => $this->borrowDetailModel->getByBorrowingId($id)
+            'details' => $this->borrowDetailModel->getByBorrowingId($id),
+            'returnData' => $this->returnModel->getByBorrowingId($id)
         ];
 
         $this->view('borrowings/detail', $data);

@@ -69,15 +69,33 @@ require_once '../app/views/layouts/header.php';
                                     <td class="px-6 py-4 text-sm text-gray-600"><?= $asset['location'] ?></td>
                                     <td class="px-6 py-4">
                                         <?php
-                                        $conditionClass = [
-                                            'baik' => 'bg-emerald-100 text-emerald-700',
-                                            'rusak ringan' => 'bg-amber-100 text-amber-700',
-                                            'rusak berat' => 'bg-red-100 text-red-700'
-                                        ];
+                                        $qtyGood  = (int)($asset['qty_good'] ?? 0);
+                                        $qtyMinor = (int)($asset['qty_minor_damage'] ?? 0);
+                                        $qtyMajor = (int)($asset['qty_major_damage'] ?? 0);
                                         ?>
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $conditionClass[$asset['condition']] ?>">
-                                            <?= ucfirst($asset['condition']) ?>
-                                        </span>
+                                        <div class="flex flex-wrap gap-1">
+                                            <?php if ($qtyGood > 0): ?>
+                                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                    <?= $qtyGood ?> Baik
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if ($qtyMinor > 0): ?>
+                                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                                    <?= $qtyMinor ?> Rusak Ringan
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if ($qtyMajor > 0): ?>
+                                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                                    <?= $qtyMajor ?> Rusak Berat
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if ($qtyGood === 0 && $qtyMinor === 0 && $qtyMajor === 0): ?>
+                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">-</span>
+                                            <?php endif; ?>
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-2">

@@ -75,6 +75,21 @@
         text-transform: uppercase;
     }
 
+    .toggle-password {
+        color: #94a3b8;
+        cursor: pointer;
+        transition: color 0.2s;
+        user-select: none;
+        background: none;
+        border: none;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .toggle-password:hover {
+        color: #10b981;
+    }
+
     .btn-register {
         background: linear-gradient(135deg, #10b981 0%, #0891b2 100%);
         color: #fff;
@@ -187,7 +202,7 @@
                     class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
                     id="name" 
                     name="name" 
-                    placeholder="Masukkan nama lengkap" 
+                    placeholder="" 
                     type="text"
                     required
                 />
@@ -200,7 +215,7 @@
                     class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
                     id="nim_nip" 
                     name="nim_nip" 
-                    placeholder="123456789" 
+                    placeholder="" 
                     type="text"
                     required
                 />
@@ -213,7 +228,7 @@
                     class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
                     id="email" 
                     name="email" 
-                    placeholder="name@university.edu" 
+                    placeholder="" 
                     type="email"
                     required
                 />
@@ -226,7 +241,7 @@
                     class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
                     id="username" 
                     name="username" 
-                    placeholder="username" 
+                    placeholder="" 
                     type="text"
                     required
                 />
@@ -235,14 +250,19 @@
             <!-- Password -->
             <div class="flex flex-col gap-1.5">
                 <label class="auth-label" for="password">Password</label>
-                <input 
-                    class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
-                    id="password" 
-                    name="password" 
-                    placeholder="••••••••" 
-                    type="password"
-                    required
-                />
+                <div class="relative">
+                    <input 
+                        class="auth-input w-full rounded-lg py-2.5 pl-3 pr-10 text-base"
+                        id="password" 
+                        name="password" 
+                        placeholder="" 
+                        type="password"
+                        required
+                    />
+                    <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-xl" onclick="togglePassword('password', this)" tabindex="-1" aria-label="Toggle password visibility">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Submit Button -->
@@ -269,5 +289,19 @@
         </footer>
     </main>
 </div>
+
+<script>
+function togglePassword(fieldId, btn) {
+    const input = document.getElementById(fieldId);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+    } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+    }
+}
+</script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>

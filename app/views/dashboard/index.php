@@ -122,17 +122,26 @@
                                                 <td class="py-4">
                                                     <?php
                                                     $statusColors = [
-                                                        'pending' => 'bg-yellow-100 text-yellow-800',
-                                                        'approved' => 'bg-green-100 text-green-800',
-                                                        'rejected' => 'bg-red-100 text-red-800',
-                                                        'returned' => 'bg-blue-100 text-blue-800',
-                                                        'cancelled' => 'bg-gray-100 text-gray-800',
-                                                        'pending_return' => 'bg-purple-100 text-purple-800'
+                                                        'pending'        => 'bg-amber-100 text-amber-700',
+                                                        'approved'       => 'bg-emerald-100 text-emerald-700',
+                                                        'rejected'       => 'bg-red-100 text-red-700',
+                                                        'returned'       => 'bg-sky-100 text-sky-700',
+                                                        'cancelled'      => 'bg-gray-100 text-gray-600',
+                                                        'pending_return' => 'bg-purple-100 text-purple-700'
                                                     ];
-                                                    $statusColor = isset($statusColors[$borrow['status']]) ? $statusColors[$borrow['status']] : 'bg-gray-100 text-gray-800';
+                                                    $statusLabels = [
+                                                        'pending'        => 'Menunggu Verifikasi Peminjaman',
+                                                        'approved'       => 'Approved',
+                                                        'rejected'       => 'Rejected',
+                                                        'returned'       => 'Returned',
+                                                        'cancelled'      => 'Cancelled',
+                                                        'pending_return' => 'Menunggu Verifikasi Pengembalian'
+                                                    ];
+                                                    $statusColor = $statusColors[$borrow['status']] ?? 'bg-gray-100 text-gray-600';
+                                                    $statusLabel = $statusLabels[$borrow['status']] ?? ucfirst(str_replace('_', ' ', $borrow['status']));
                                                     ?>
                                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <?= $statusColor ?>">
-                                                        <?= ucfirst(str_replace('_', ' ', $borrow['status'])) ?>
+                                                        <?= $statusLabel ?>
                                                     </span>
                                                 </td>
                                                 <td class="py-4">

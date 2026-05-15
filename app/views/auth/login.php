@@ -79,6 +79,21 @@
         color: #64748b;
     }
 
+    .toggle-password {
+        color: #94a3b8;
+        cursor: pointer;
+        transition: color 0.2s;
+        user-select: none;
+        background: none;
+        border: none;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .toggle-password:hover {
+        color: #10b981;
+    }
+
     .btn-signin {
         background: linear-gradient(135deg, #10b981 0%, #0891b2 100%);
         color: #fff;
@@ -193,7 +208,7 @@
                         class="auth-input w-full rounded-lg py-2.5 pl-10 pr-3 text-base"
                         id="username" 
                         name="username" 
-                        placeholder="admin or admin@lab.com" 
+                        placeholder="" 
                         type="text"
                         required
                         autofocus
@@ -212,13 +227,16 @@
                 <div class="relative">
                     <span class="material-symbols-outlined auth-icon absolute left-3 top-1/2 -translate-y-1/2 text-xl">lock</span>
                     <input 
-                        class="auth-input w-full rounded-lg py-2.5 pl-10 pr-3 text-base"
+                        class="auth-input w-full rounded-lg py-2.5 pl-10 pr-10 text-base"
                         id="password" 
                         name="password" 
-                        placeholder="••••••••" 
+                        placeholder="" 
                         type="password"
                         required
                     />
+                    <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-xl" onclick="togglePassword('password', this)" tabindex="-1" aria-label="Toggle password visibility">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+                    </button>
                 </div>
             </div>
 
@@ -244,5 +262,19 @@
         </footer>
     </main>
 </div>
+
+<script>
+function togglePassword(fieldId, btn) {
+    const input = document.getElementById(fieldId);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+    } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+    }
+}
+</script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>

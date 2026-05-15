@@ -8,55 +8,6 @@
 
         <div class="space-y-6">
 
-            <!-- Info Peminjaman -->
-            <div class="glass-card rounded-3xl overflow-hidden">
-                <div class="px-6 py-4 border-b border-white/30">
-                    <h5 class="font-semibold text-gray-800">Informasi Peminjaman</h5>
-                </div>
-                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-3">
-                        <div class="flex gap-3">
-                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Kode</span>
-                            <span class="text-sm text-gray-900 font-semibold"><?= $borrowing['borrow_code'] ?></span>
-                        </div>
-                        <div class="flex gap-3">
-                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Tanggal Pinjam</span>
-                            <span class="text-sm text-gray-900"><?= formatDate($borrowing['borrow_date']) ?></span>
-                        </div>
-                        <div class="flex gap-3">
-                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Tanggal Kembali</span>
-                            <span class="text-sm text-gray-900"><?= formatDate($borrowing['return_date']) ?></span>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex gap-3">
-                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Status</span>
-                            <?php
-                            $statusClass = [
-                                'pending'  => 'bg-amber-100 text-amber-700',
-                                'approved' => 'bg-emerald-100 text-emerald-700',
-                                'rejected' => 'bg-red-100 text-red-700',
-                                'returned' => 'bg-sky-100 text-sky-700'
-                            ];
-                            ?>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $statusClass[$borrowing['status']] ?? 'bg-gray-100 text-gray-600' ?>">
-                                <?= ucfirst($borrowing['status']) ?>
-                            </span>
-                        </div>
-                        <div class="flex gap-3">
-                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Keperluan</span>
-                            <span class="text-sm text-gray-900"><?= $borrowing['purpose'] ?></span>
-                        </div>
-                        <?php if ($borrowing['notes']): ?>
-                        <div class="flex gap-3">
-                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Catatan</span>
-                            <span class="text-sm text-gray-900"><?= $borrowing['notes'] ?></span>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-
             <!-- Daftar Aset -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="px-6 py-4 border-b border-white/30">
@@ -83,6 +34,135 @@
                     </table>
                 </div>
             </div>
+
+            <!-- Info Peminjaman -->
+            <div class="glass-card rounded-3xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-white/30">
+                    <h5 class="font-semibold text-gray-800">Informasi Peminjaman</h5>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Kode</span>
+                            <span class="text-sm text-gray-900 font-semibold"><?= $borrowing['borrow_code'] ?></span>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Tanggal Pinjam</span>
+                            <span class="text-sm text-gray-900"><?= formatDate($borrowing['borrow_date']) ?></span>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Tanggal Kembali</span>
+                            <span class="text-sm text-gray-900"><?= formatDate($borrowing['return_date']) ?></span>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Status</span>
+                            <?php
+                            $statusClass = [
+                                'pending'        => 'bg-amber-100 text-amber-700',
+                                'approved'       => 'bg-emerald-100 text-emerald-700',
+                                'rejected'       => 'bg-red-100 text-red-700',
+                                'returned'       => 'bg-sky-100 text-sky-700',
+                                'cancelled'      => 'bg-gray-100 text-gray-600',
+                                'pending_return' => 'bg-emerald-100 text-emerald-700'
+                            ];
+                            $statusLabel = [
+                                'pending'        => 'Menunggu Verifikasi',
+                                'approved'       => 'Disetujui',
+                                'rejected'       => 'Ditolak',
+                                'returned'       => 'Returned',
+                                'cancelled'      => 'Cancelled',
+                                'pending_return' => 'Disetujui'
+                            ];
+                            ?>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $statusClass[$borrowing['status']] ?? 'bg-gray-100 text-gray-600' ?>">
+                                <?= $statusLabel[$borrowing['status']] ?? ucfirst($borrowing['status']) ?>
+                            </span>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Keperluan</span>
+                            <span class="text-sm text-gray-900"><?= $borrowing['purpose'] ?></span>
+                        </div>
+                        <?php if ($borrowing['notes']): ?>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-36 shrink-0">Catatan</span>
+                            <span class="text-sm text-gray-900"><?= $borrowing['notes'] ?></span>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Pengembalian -->
+            <?php if (!empty($returnData) && in_array($borrowing['status'], ['pending_return', 'returned'])): ?>
+            <div class="glass-card rounded-3xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-white/30 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg text-sky-600">assignment_return</span>
+                    <h5 class="font-semibold text-gray-800">Informasi Pengembalian</h5>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-40 shrink-0">Tanggal Dikembalikan</span>
+                            <span class="text-sm text-gray-900"><?= formatDate($returnData['return_date']) ?></span>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-40 shrink-0">Kondisi Alat</span>
+                            <?php
+                            $conditionClass = [
+                                'good'    => 'bg-emerald-100 text-emerald-700',
+                                'damaged' => 'bg-red-100 text-red-700',
+                                'lost'    => 'bg-gray-100 text-gray-700',
+                            ];
+                            $conditionLabel = [
+                                'good'    => 'Baik',
+                                'damaged' => 'Rusak',
+                                'lost'    => 'Hilang',
+                            ];
+                            $cond = $returnData['condition'] ?? '';
+                            ?>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $conditionClass[$cond] ?? 'bg-gray-100 text-gray-600' ?>">
+                                <?= $conditionLabel[$cond] ?? ucfirst($cond) ?>
+                            </span>
+                        </div>
+                        <?php if (!empty($returnData['notes'])): ?>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-40 shrink-0">Catatan</span>
+                            <span class="text-sm text-gray-900"><?= htmlspecialchars($returnData['notes']) ?></span>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-40 shrink-0">Status Pengembalian</span>
+                            <?php
+                            $retStatusClass = [
+                                'pending_return' => 'bg-purple-100 text-purple-700',
+                                'returned'       => 'bg-sky-100 text-sky-700',
+                                'rejected'       => 'bg-red-100 text-red-700',
+                            ];
+                            $retStatusLabel = [
+                                'pending_return' => 'Menunggu Verifikasi',
+                                'returned'       => 'Disetujui',
+                                'rejected'       => 'Ditolak',
+                            ];
+                            $retStatus = $returnData['status'] ?? '';
+                            ?>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <?= $retStatusClass[$retStatus] ?? 'bg-gray-100 text-gray-600' ?>">
+                                <?= $retStatusLabel[$retStatus] ?? ucfirst($retStatus) ?>
+                            </span>
+                        </div>
+                        <?php if (!empty($returnData['rejection_reason'])): ?>
+                        <div class="flex gap-3">
+                            <span class="text-sm font-medium text-gray-500 w-40 shrink-0">Alasan Penolakan</span>
+                            <span class="text-sm text-red-700"><?= htmlspecialchars($returnData['rejection_reason']) ?></span>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <!-- Back Button -->
             <div>

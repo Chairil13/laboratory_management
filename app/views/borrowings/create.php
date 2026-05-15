@@ -43,10 +43,10 @@
                             <div class="md:col-span-8">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Aset *</label>
                                 <select name="asset_id[]" required
-                                        class="w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all">
+                                        class="asset-select w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all">
                                     <option value="">Pilih Aset</option>
                                     <?php foreach ($assets as $asset): ?>
-                                        <option value="<?= $asset['id'] ?>">
+                                        <option value="<?= $asset['id'] ?>" data-max="<?= $asset['available_quantity'] ?>">
                                             <?= $asset['name'] ?> (Tersedia: <?= $asset['available_quantity'] ?>)
                                         </option>
                                     <?php endforeach; ?>
@@ -55,7 +55,7 @@
                             <div class="md:col-span-3">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Jumlah *</label>
                                 <input type="number" name="quantity[]" min="1" required
-                                       class="w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all">
+                                       class="quantity-input w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all">
                             </div>
                             <div class="md:col-span-1 flex justify-center">
                                 <button type="button" class="remove-item w-9 h-9 flex items-center justify-center rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors" style="display:none;">
@@ -92,13 +92,37 @@
 </div>
 
 <script>
+// Set max quantity when asset is selected
+function bindSelectChange(select) {
+    select.addEventListener('change', function() {
+        const max = this.options[this.selectedIndex]?.dataset.max || '';
+        const qtyInput = this.closest('.asset-item').querySelector('.quantity-input');
+        qtyInput.max = max;
+        qtyInput.placeholder = max ? 'Maks: ' + max : '';
+        // Reset if current value exceeds new max
+        if (max && parseInt(qtyInput.value) > parseInt(max)) {
+            qtyInput.value = max;
+        }
+    });
+}
+
+// Bind on page load
+document.querySelectorAll('.asset-select').forEach(bindSelectChange);
+
 document.getElementById('addAsset').addEventListener('click', function() {
     const container = document.getElementById('assetItems');
     const firstItem = container.querySelector('.asset-item');
     const newItem = firstItem.cloneNode(true);
-    newItem.querySelectorAll('input, select').forEach(input => input.value = '');
+    newItem.querySelectorAll('input, select').forEach(input => {
+        input.value = '';
+        if (input.classList.contains('quantity-input')) {
+            input.max = '';
+            input.placeholder = '';
+        }
+    });
     newItem.querySelector('.remove-item').style.display = 'flex';
     container.appendChild(newItem);
+    bindSelectChange(newItem.querySelector('.asset-select'));
     updateRemoveButtons();
 });
 
@@ -111,7 +135,7 @@ document.getElementById('assetItems').addEventListener('click', function(e) {
 
 function updateRemoveButtons() {
     const items = document.querySelectorAll('.asset-item');
-    items.forEach((item, index) => {
+    items.forEach((item) => {
         const removeBtn = item.querySelector('.remove-item');
         removeBtn.style.display = items.length > 1 ? 'flex' : 'none';
     });
