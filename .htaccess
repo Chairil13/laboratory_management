@@ -1,0 +1,8 @@
+Options -Multiviews
+
+RewriteEngine On
+RewriteBase /laboratory_management/
+
+# Redirect ke public folder
+RewriteCond %{REQUEST_URI} !^/laboratory_management/public/
+RewriteRule ^(.*)$ public/$1 [L]
