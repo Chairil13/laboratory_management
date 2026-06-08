@@ -30,43 +30,43 @@
             <!-- Statistics Cards with Glassmorphism -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <!-- Total Assets -->
+                <!-- Total Asset -->
                 <div class="glass-stat rounded-3xl p-6 hover-lift group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="w-14 h-14 bg-gradient-to-br from-slate-400 to-slate-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
                             <span class="material-symbols-outlined text-white text-3xl">inventory_2</span>
                         </div>
                     </div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Total Assets</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Total Asset</p>
                     <h3 class="text-4xl font-bold text-gray-900 mb-1"><?= $total_assets ?? 0 ?></h3>
-                    <p class="text-xs text-gray-500">Registered items</p>
+                    <p class="text-xs text-gray-500">Item terdaftar</p>
                 </div>
 
-                <!-- Available -->
+                <!-- Tersedia -->
                 <div class="glass-stat rounded-3xl p-6 hover-lift hover-glow group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="w-14 h-14 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl shadow-emerald-500/30 group-hover:shadow-2xl group-hover:shadow-emerald-500/40 transition-all duration-300">
                             <span class="material-symbols-outlined text-white text-3xl">check_circle</span>
                         </div>
                     </div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Available</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Tersedia</p>
                     <h3 class="text-4xl font-bold text-gray-900 mb-1"><?= $available_assets ?? 0 ?></h3>
-                    <p class="text-xs text-gray-500">Ready to borrow</p>
+                    <p class="text-xs text-gray-500">Siap dipinjam</p>
                 </div>
 
-                <!-- In Use -->
+                <!-- Dipinjam -->
                 <div class="glass-stat rounded-3xl p-6 hover-lift group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="w-14 h-14 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-xl shadow-amber-500/30 group-hover:shadow-2xl group-hover:shadow-amber-500/40 transition-all duration-300">
                             <span class="material-symbols-outlined text-white text-3xl">shopping_bag</span>
                         </div>
                     </div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">In Use</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Dipinjam</p>
                     <h3 class="text-4xl font-bold text-gray-900 mb-1"><?= $borrowed_assets ?? 0 ?></h3>
-                    <p class="text-xs text-gray-500">Currently borrowed</p>
+                    <p class="text-xs text-gray-500">Sedang dipinjam</p>
                 </div>
 
-                <!-- Pending -->
+                <!-- Menunggu -->
                 <div class="glass-stat rounded-3xl p-6 hover-lift group <?= ($pending_requests ?? 0) > 0 ? 'ring-2 ring-violet-400 ring-offset-2' : '' ?>">
                     <div class="flex items-start justify-between mb-4">
                         <div class="w-14 h-14 bg-gradient-to-br from-violet-400 to-violet-600 rounded-2xl flex items-center justify-center shadow-xl shadow-violet-500/30 group-hover:shadow-2xl group-hover:shadow-violet-500/40 transition-all duration-300 <?= ($pending_requests ?? 0) > 0 ? 'animate-pulse' : '' ?>">
@@ -75,17 +75,17 @@
                         <?php if (($pending_requests ?? 0) > 0 && getUserRole() === 'kepala_lab'): ?>
                             <span class="flex items-center gap-1 px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">
                                 <span class="material-symbols-outlined text-xs">notification_important</span>
-                                New
+                                Baru
                             </span>
                         <?php endif; ?>
                     </div>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Pending</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Menunggu</p>
                     <h3 class="text-4xl font-bold text-gray-900 mb-1"><?= $pending_requests ?? 0 ?></h3>
-                    <p class="text-xs text-gray-500">Awaiting approval</p>
+                    <p class="text-xs text-gray-500">Menunggu persetujuan</p>
                 </div>
             </div>
 
-            <!-- Role Specific Content -->
+            <!-- Peran Specific Content -->
             <?php if (getUserRole() === 'user' && isset($my_borrowings)): ?>
                 <div class="bg-surface rounded-xl border border-border shadow-sm">
                     <div class="px-6 py-4 border-b border-border flex items-center justify-between">
@@ -131,10 +131,10 @@
                                                     ];
                                                     $statusLabels = [
                                                         'pending'        => 'Menunggu Verifikasi Peminjaman',
-                                                        'approved'       => 'Approved',
-                                                        'rejected'       => 'Rejected',
-                                                        'returned'       => 'Returned',
-                                                        'cancelled'      => 'Cancelled',
+                                                        'approved'       => 'Disetujui',
+                                                        'rejected'       => 'Ditolak',
+                                                        'returned'       => 'Dikembalikan',
+                                                        'cancelled'      => 'Dibatalkan',
                                                         'pending_return' => 'Menunggu Verifikasi Pengembalian'
                                                     ];
                                                     $statusColor = $statusColors[$borrow['status']] ?? 'bg-gray-100 text-gray-600';
@@ -158,7 +158,7 @@
                     </div>
                 </div>
 
-                <!-- Available Assets Section for Students -->
+                <!-- Tersedia Asset Section for Students -->
                 <?php if (isset($available_assets_list)): ?>
                 <div class="bg-surface rounded-xl border border-border shadow-sm">
                     <div class="px-6 py-4 border-b border-border flex items-center justify-between">
@@ -257,7 +257,7 @@
             <?php if (getUserRole() === 'kepala_lab' && isset($pending_approvals)): ?>
                 <div class="bg-surface rounded-xl border border-border shadow-sm">
                     <div class="px-6 py-4 border-b border-border flex items-center justify-between">
-                        <h2 class="font-heading text-lg font-semibold text-text-primary">Pengajuan Pending</h2>
+                        <h2 class="font-heading text-lg font-semibold text-text-primary">Pengajuan Menunggu</h2>
                         <a href="<?= BASE_URL ?>approval" class="text-sm text-primary hover:text-primary-container font-medium">
                             Lihat Semua →
                         </a>
@@ -287,7 +287,7 @@
                                                 <td class="py-4 text-sm text-text-secondary"><?= formatDate($approval['borrow_date']) ?></td>
                                                 <td class="py-4">
                                                     <a href="<?= BASE_URL ?>approval" class="inline-flex items-center gap-1 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all">
-                                                        Review
+                                                        Tinjau
                                                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                                     </a>
                                                 </td>
@@ -307,7 +307,7 @@
                 <div class="bg-gradient-to-r from-gray-50 to-slate-100 rounded-2xl p-8 border border-gray-200">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome back, <?= getUserName() ?>! 👋</h2>
+                            <h2 class="text-2xl font-bold text-gray-900 mb-2">Selamat datang, <?= getUserName() ?>! 👋</h2>
                             <p class="text-gray-600">Here's what's happening with your laboratory today.</p>
                         </div>
                         <div class="hidden md:block">
@@ -328,8 +328,8 @@
                             </div>
                             <span class="material-symbols-outlined text-gray-400 group-hover:text-emerald-600 transition-colors">arrow_forward</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Add New Asset</h3>
-                        <p class="text-sm text-gray-500">Register new laboratory equipment and resources</p>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Tambah Asset Baru</h3>
+                        <p class="text-sm text-gray-500">Daftarkan alat dan sumber daya laboratorium baru</p>
                     </a>
 
                     <!-- Add User Card -->
@@ -340,11 +340,11 @@
                             </div>
                             <span class="material-symbols-outlined text-gray-400 group-hover:text-violet-600 transition-colors">arrow_forward</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Add New User</h3>
-                        <p class="text-sm text-gray-500">Create accounts for students and staff members</p>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Tambah Pengguna Baru</h3>
+                        <p class="text-sm text-gray-500">Buat akun untuk mahasiswa dan staf</p>
                     </a>
 
-                    <!-- Manage Assets Card -->
+                    <!-- Kelola Asset Card -->
                     <a href="<?= BASE_URL ?>asset" class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-amber-300 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-start justify-between mb-4">
                             <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors">
@@ -352,18 +352,18 @@
                             </div>
                             <span class="material-symbols-outlined text-gray-400 group-hover:text-amber-600 transition-colors">arrow_forward</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Manage Assets</h3>
-                        <p class="text-sm text-gray-500">View, edit, and organize laboratory assets</p>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Kelola Asset</h3>
+                        <p class="text-sm text-gray-500">Lihat, edit, dan tata asset laboratorium</p>
                     </a>
                 </div>
 
-                <!-- System Overview & Recent Activity -->
+                <!-- Ringkasan Sistem & Recent Activity -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- System Overview -->
+                    <!-- Ringkasan Sistem -->
                     <div class="lg:col-span-2 bg-white rounded-2xl border border-gray-200 overflow-hidden">
                         <div class="px-6 py-5 border-b border-gray-100">
-                            <h3 class="text-lg font-semibold text-gray-900">System Overview</h3>
-                            <p class="text-sm text-gray-500 mt-1">Real-time statistics and metrics</p>
+                            <h3 class="text-lg font-semibold text-gray-900">Ringkasan Sistem</h3>
+                            <p class="text-sm text-gray-500 mt-1">Statistik dan metrik terkini</p>
                         </div>
                         <div class="p-6">
                             <div class="grid grid-cols-2 gap-4">
@@ -373,12 +373,12 @@
                                         <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
                                             <span class="material-symbols-outlined text-slate-600">inventory_2</span>
                                         </div>
-                                        <span class="text-xs font-medium text-slate-900 uppercase tracking-wider">Total Assets</span>
+                                        <span class="text-xs font-medium text-slate-900 uppercase tracking-wider">Total Asset</span>
                                     </div>
                                     <div class="flex items-end justify-between">
                                         <div>
                                             <p class="text-3xl font-bold text-slate-900"><?= $total_assets ?? 0 ?></p>
-                                            <p class="text-xs text-slate-700 mt-1">Registered items</p>
+                                            <p class="text-xs text-slate-700 mt-1">Item terdaftar</p>
                                         </div>
                                     </div>
                                 </div>
@@ -389,12 +389,12 @@
                                         <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
                                             <span class="material-symbols-outlined text-emerald-600">check_circle</span>
                                         </div>
-                                        <span class="text-xs font-medium text-emerald-900 uppercase tracking-wider">Available</span>
+                                        <span class="text-xs font-medium text-emerald-900 uppercase tracking-wider">Tersedia</span>
                                     </div>
                                     <div class="flex items-end justify-between">
                                         <div>
                                             <p class="text-3xl font-bold text-emerald-900"><?= $available_assets ?? 0 ?></p>
-                                            <p class="text-xs text-emerald-700 mt-1">Ready to borrow</p>
+                                            <p class="text-xs text-emerald-700 mt-1">Siap dipinjam</p>
                                         </div>
                                     </div>
                                 </div>
@@ -405,12 +405,12 @@
                                         <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
                                             <span class="material-symbols-outlined text-amber-600">shopping_bag</span>
                                         </div>
-                                        <span class="text-xs font-medium text-amber-900 uppercase tracking-wider">In Use</span>
+                                        <span class="text-xs font-medium text-amber-900 uppercase tracking-wider">Dipinjam</span>
                                     </div>
                                     <div class="flex items-end justify-between">
                                         <div>
                                             <p class="text-3xl font-bold text-amber-900"><?= $borrowed_assets ?? 0 ?></p>
-                                            <p class="text-xs text-amber-700 mt-1">Currently borrowed</p>
+                                            <p class="text-xs text-amber-700 mt-1">Sedang dipinjam</p>
                                         </div>
                                     </div>
                                 </div>
@@ -421,12 +421,12 @@
                                         <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
                                             <span class="material-symbols-outlined text-violet-600">pending_actions</span>
                                         </div>
-                                        <span class="text-xs font-medium text-violet-900 uppercase tracking-wider">Pending</span>
+                                        <span class="text-xs font-medium text-violet-900 uppercase tracking-wider">Menunggu</span>
                                     </div>
                                     <div class="flex items-end justify-between">
                                         <div>
                                             <p class="text-3xl font-bold text-violet-900"><?= $pending_requests ?? 0 ?></p>
-                                            <p class="text-xs text-violet-700 mt-1">Awaiting approval</p>
+                                            <p class="text-xs text-violet-700 mt-1">Menunggu persetujuan</p>
                                         </div>
                                     </div>
                                 </div>
@@ -434,11 +434,11 @@
                         </div>
                     </div>
 
-                    <!-- Quick Links -->
+                    <!-- Akses Cepat -->
                     <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
                         <div class="px-6 py-5 border-b border-gray-100">
-                            <h3 class="text-lg font-semibold text-gray-900">Quick Links</h3>
-                            <p class="text-sm text-gray-500 mt-1">Frequently accessed pages</p>
+                            <h3 class="text-lg font-semibold text-gray-900">Akses Cepat</h3>
+                            <p class="text-sm text-gray-500 mt-1">Halaman yang sering diakses</p>
                         </div>
                         <div class="p-4">
                             <div class="space-y-2">
@@ -447,8 +447,8 @@
                                         <span class="material-symbols-outlined text-gray-600 text-lg group-hover:text-slate-700">inventory_2</span>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">All Assets</p>
-                                        <p class="text-xs text-gray-500">View inventory</p>
+                                        <p class="text-sm font-medium text-gray-900">Semua Asset</p>
+                                        <p class="text-xs text-gray-500">Lihat inventaris</p>
                                     </div>
                                     <span class="material-symbols-outlined text-gray-400 text-lg">chevron_right</span>
                                 </a>
@@ -458,8 +458,8 @@
                                         <span class="material-symbols-outlined text-gray-600 text-lg group-hover:text-violet-600">group</span>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">All Users</p>
-                                        <p class="text-xs text-gray-500">Manage accounts</p>
+                                        <p class="text-sm font-medium text-gray-900">Semua Pengguna</p>
+                                        <p class="text-xs text-gray-500">Kelola akun</p>
                                     </div>
                                     <span class="material-symbols-outlined text-gray-400 text-lg">chevron_right</span>
                                 </a>
@@ -469,8 +469,8 @@
                                         <span class="material-symbols-outlined text-gray-600 text-lg group-hover:text-amber-600">list_alt</span>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Borrowings</p>
-                                        <p class="text-xs text-gray-500">View all requests</p>
+                                        <p class="text-sm font-medium text-gray-900">Peminjaman</p>
+                                        <p class="text-xs text-gray-500">Lihat semua pengajuan</p>
                                     </div>
                                     <span class="material-symbols-outlined text-gray-400 text-lg">chevron_right</span>
                                 </a>
@@ -480,8 +480,8 @@
                                         <span class="material-symbols-outlined text-gray-600 text-lg group-hover:text-emerald-600">bar_chart</span>
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium text-gray-900">Reports</p>
-                                        <p class="text-xs text-gray-500">Analytics & stats</p>
+                                        <p class="text-sm font-medium text-gray-900">Laporan</p>
+                                        <p class="text-xs text-gray-500">Analitik dan statistik</p>
                                     </div>
                                     <span class="material-symbols-outlined text-gray-400 text-lg">chevron_right</span>
                                 </a>
@@ -495,3 +495,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

@@ -76,10 +76,10 @@
                                         ];
                                         $statusLabel = [
                                             'pending'   => 'Menunggu Verifikasi Peminjaman',
-                                            'approved'  => 'Approved',
-                                            'rejected'  => 'Rejected',
-                                            'returned'  => 'Returned',
-                                            'cancelled' => 'Cancelled',
+                                            'approved'  => 'Disetujui',
+                                            'rejected'  => 'Ditolak',
+                                            'returned'  => 'Dikembalikan',
+                                            'cancelled' => 'Dibatalkan',
                                             'pending_return' => 'Menunggu Verifikasi Pengembalian'
                                         ];
                                         ?>
@@ -126,3 +126,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

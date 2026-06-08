@@ -2,9 +2,11 @@
 
 class AuthController extends Controller {
     private $userModel;
+    private $registrationRequestModel;
 
     public function __construct() {
         $this->userModel = $this->model('User');
+        $this->registrationRequestModel = $this->model('RegistrationRequest');
     }
 
     public function login() {
@@ -83,21 +85,71 @@ class AuthController extends Controller {
 
     public function register() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = sanitize($_POST['name']);
+            $applicantType = sanitize($_POST['applicant_type'] ?? 'mahasiswa');
+            $nim = sanitize($_POST['nim']);
+            $email = sanitize($_POST['email']);
+            $phone = sanitize($_POST['phone'] ?? '');
+            $programStudi = sanitize($_POST['program_studi']);
+            $semester = sanitize($_POST['semester'] ?? '');
+            $className = sanitize($_POST['class_name'] ?? '');
+            $reason = sanitize($_POST['reason'] ?? '');
+
+            if (!in_array($applicantType, ['mahasiswa', 'dosen'])) {
+                setFlash('danger', 'Jenis pemohon tidak valid');
+                $this->redirect('auth/register');
+            }
+
+            if (empty($name) || empty($nim) || empty($email) || empty($programStudi)) {
+                setFlash('danger', 'Nama, NIM/NIP, email, dan program studi wajib diisi');
+                $this->redirect('auth/register');
+            }
+
+            if (!validateEmail($email)) {
+                setFlash('danger', 'Format email tidak valid');
+                $this->redirect('auth/register');
+            }
+
+            $allowedPrograms = [
+                'Teknik Listrik D3',
+                'Teknik Informatika D4',
+                'Teknologi Rekayasa Sistem Kelistrikan Minyak dan Gas D4'
+            ];
+
+            if (!in_array($programStudi, $allowedPrograms)) {
+                setFlash('danger', 'Pengajuan hanya dibuka untuk mahasiswa dan dosen Jurusan Teknik Elektro.');
+                $this->redirect('auth/register');
+            }
+
+            if ($this->userModel->findByNimNip($nim) || $this->userModel->findByEmail($email)) {
+                setFlash('danger', 'NIM atau email sudah terdaftar sebagai akun aktif. Silakan hubungi admin laboratorium.');
+                $this->redirect('auth/register');
+            }
+
+            if ($this->registrationRequestModel->existsActive($nim, $email)) {
+                setFlash('warning', 'Pengajuan dengan NIM atau email tersebut masih menunggu verifikasi admin.');
+                $this->redirect('auth/register');
+            }
+
             $data = [
-                'name' => sanitize($_POST['name']),
-                'nim_nip' => sanitize($_POST['nim_nip']),
-                'email' => sanitize($_POST['email']),
-                'username' => sanitize($_POST['username']),
-                'password' => hashPassword($_POST['password']),
-                'role' => 'user',
+                'applicant_type' => $applicantType,
+                'name' => $name,
+                'nim' => $nim,
+                'email' => $email,
+                'phone' => $phone,
+                'program_studi' => $programStudi,
+                'semester' => $semester,
+                'class_name' => $className,
+                'reason' => $reason,
+                'status' => 'pending',
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
-            if ($this->userModel->create($data)) {
-                setFlash('success', 'Registrasi berhasil! Silakan login');
+            if ($this->registrationRequestModel->create($data)) {
+                setFlash('success', 'Pengajuan akun berhasil dikirim. Admin akan memverifikasi data Anda sebelum akun dapat digunakan.');
                 $this->redirect('auth/login');
             } else {
-                setFlash('danger', 'Registrasi gagal');
+                setFlash('danger', 'Pengajuan akun gagal dikirim');
                 $this->redirect('auth/register');
             }
         }

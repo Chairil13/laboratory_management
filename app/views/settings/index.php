@@ -31,25 +31,25 @@
                     <span class="material-symbols-outlined text-white text-3xl">settings</span>
                 </div>
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">Settings</h1>
-                    <p class="text-gray-600 mt-1">Manage your account settings and preferences</p>
+                    <h1 class="text-3xl font-bold text-gray-800">Pengaturan</h1>
+                    <p class="text-gray-600 mt-1">Kelola pengaturan dan preferensi akun Anda</p>
                 </div>
             </div>
 
-            <!-- Profile Information Card -->
+            <!-- Informasi Profil Card -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-slate-50">
                     <h2 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <span class="material-symbols-outlined text-gray-700">person</span>
-                        Profile Information
+                        Informasi Profil
                     </h2>
-                    <p class="text-sm text-gray-500 mt-1">Your personal information (read-only)</p>
+                    <p class="text-sm text-gray-500 mt-1">Informasi pribadi Anda (hanya baca)</p>
                 </div>
                 <div class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Name -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
                             <div class="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-xl border border-gray-200">
                                 <span class="material-symbols-outlined text-gray-400">badge</span>
                                 <span class="text-gray-800"><?= htmlspecialchars($user['name']) ?></span>
@@ -76,16 +76,16 @@
 
                         <!-- Username -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nama Pengguna</label>
                             <div class="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-xl border border-gray-200">
                                 <span class="material-symbols-outlined text-gray-400">account_circle</span>
                                 <span class="text-gray-800"><?= htmlspecialchars($user['username']) ?></span>
                             </div>
                         </div>
 
-                        <!-- Role -->
+                        <!-- Peran -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Role</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Peran</label>
                             <div class="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-xl border border-gray-200">
                                 <span class="material-symbols-outlined text-gray-400">shield</span>
                                 <span class="text-gray-800 capitalize"><?= str_replace('_', ' ', htmlspecialchars($user['role'])) ?></span>
@@ -95,21 +95,21 @@
                 </div>
             </div>
 
-            <!-- Change Password Card -->
+            <!-- Ubah Password Card -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-emerald-50 to-emerald-100">
                     <h2 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-600">lock</span>
-                        Change Password
+                        Ubah Kata Sandi
                     </h2>
-                    <p class="text-sm text-gray-600 mt-1">Update your password to keep your account secure</p>
+                    <p class="text-sm text-gray-600 mt-1">Perbarui password agar akun tetap aman</p>
                 </div>
                 <div class="p-6">
                     <form action="<?= BASE_URL ?>settings/changePassword" method="POST" class="space-y-5">
-                        <!-- Current Password -->
+                        <!-- Password Saat Ini -->
                         <div>
                             <label for="current_password" class="block text-sm font-semibold text-gray-700 mb-2">
-                                Current Password
+                                Kata Sandi Saat Ini
                             </label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
@@ -118,16 +118,16 @@
                                     id="current_password" 
                                     name="current_password" 
                                     class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                                    placeholder="Enter your current password"
+                                    placeholder="Masukkan password saat ini"
                                     required
                                 />
                             </div>
                         </div>
 
-                        <!-- New Password -->
+                        <!-- Password Baru -->
                         <div>
                             <label for="new_password" class="block text-sm font-semibold text-gray-700 mb-2">
-                                New Password
+                                Kata Sandi Baru
                             </label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">lock_open</span>
@@ -136,18 +136,18 @@
                                     id="new_password" 
                                     name="new_password" 
                                     class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                                    placeholder="Enter new password (min. 6 characters)"
+                                    placeholder="Masukkan password baru (minimal 6 karakter)"
                                     minlength="6"
                                     required
                                 />
                             </div>
-                            <p class="text-xs text-gray-500 mt-1 ml-1">Password must be at least 6 characters long</p>
+                            <p class="text-xs text-gray-500 mt-1 ml-1">Kata sandi minimal 6 karakter</p>
                         </div>
 
                         <!-- Confirm Password -->
                         <div>
                             <label for="confirm_password" class="block text-sm font-semibold text-gray-700 mb-2">
-                                Confirm New Password
+                                Konfirmasi Kata Sandi Baru
                             </label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">lock_open</span>
@@ -156,7 +156,7 @@
                                     id="confirm_password" 
                                     name="confirm_password" 
                                     class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                                    placeholder="Confirm your new password"
+                                    placeholder="Konfirmasi password baru"
                                     minlength="6"
                                     required
                                 />
@@ -170,31 +170,31 @@
                                 class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all flex items-center gap-2"
                             >
                                 <span class="material-symbols-outlined text-lg">check_circle</span>
-                                Update Password
+                                Perbarui Kata Sandi
                             </button>
                             <a 
                                 href="<?= BASE_URL ?>dashboard" 
                                 class="px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all flex items-center gap-2"
                             >
                                 <span class="material-symbols-outlined text-lg">cancel</span>
-                                Cancel
+                                Batal
                             </a>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Security Tips -->
+            <!-- Tips Keamanan -->
             <div class="glass-card rounded-2xl p-6 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200">
                 <div class="flex items-start gap-3">
                     <span class="material-symbols-outlined text-blue-600 text-2xl">info</span>
                     <div>
-                        <h3 class="font-semibold text-blue-900 mb-2">Security Tips</h3>
+                        <h3 class="font-semibold text-blue-900 mb-2">Tips Keamanan</h3>
                         <ul class="text-sm text-blue-800 space-y-1">
-                            <li>• Use a strong password with a mix of letters, numbers, and symbols</li>
-                            <li>• Don't share your password with anyone</li>
-                            <li>• Change your password regularly</li>
-                            <li>• Don't use the same password for multiple accounts</li>
+                            <li>• Gunakan password kuat dengan kombinasi huruf, angka, dan simbol</li>
+                            <li>• Jangan bagikan password kepada siapa pun</li>
+                            <li>• Ubah password secara berkala</li>
+                            <li>• Jangan gunakan password yang sama untuk banyak akun</li>
                         </ul>
                     </div>
                 </div>
@@ -227,3 +227,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
 </script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

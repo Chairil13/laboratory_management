@@ -34,21 +34,21 @@ require_once '../app/views/layouts/header.php';
             <div class="flex justify-end">
                 <a href="<?= BASE_URL ?>asset/create" class="glass-card px-6 py-3 rounded-xl hover-lift flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors font-medium">
                     <span class="material-symbols-outlined">add</span>
-                    Add Asset
+                    Tambah Asset
                 </a>
             </div>
 
-            <!-- Assets Table Card -->
+            <!-- Asset Table Card -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
                             <tr class="border-b border-white/30">
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Code</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kategori</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Available</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tersedia</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Location</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Condition</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
@@ -120,3 +120,6 @@ require_once '../app/views/layouts/header.php';
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

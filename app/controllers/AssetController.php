@@ -12,7 +12,7 @@ class AssetController extends Controller {
 
     public function index() {
         $data = [
-            'title' => 'Manajemen Aset',
+            'title' => 'Manajemen Asset',
             'assets' => $this->assetModel->getAllWithCategory()
         ];
 
@@ -34,15 +34,15 @@ class AssetController extends Controller {
             ];
 
             if ($this->assetModel->create($data)) {
-                setFlash('success', 'Aset berhasil ditambahkan');
+                setFlash('success', 'Asset berhasil ditambahkan');
                 $this->redirect('asset');
             } else {
-                setFlash('danger', 'Gagal menambahkan aset');
+                setFlash('danger', 'Gagal menambahkan asset');
             }
         }
 
         $data = [
-            'title' => 'Tambah Aset',
+            'title' => 'Tambah Asset',
             'categories' => $this->categoryModel->getAll()
         ];
 
@@ -67,15 +67,15 @@ class AssetController extends Controller {
             ];
 
             if ($this->assetModel->update($id, $data)) {
-                setFlash('success', 'Aset berhasil diupdate');
+                setFlash('success', 'Asset berhasil diupdate');
                 $this->redirect('asset');
             } else {
-                setFlash('danger', 'Gagal mengupdate aset');
+                setFlash('danger', 'Gagal mengupdate asset');
             }
         }
 
         $data = [
-            'title' => 'Edit Aset',
+            'title' => 'Edit Asset',
             'asset' => $this->assetModel->getById($id),
             'categories' => $this->categoryModel->getAll()
         ];
@@ -85,9 +85,9 @@ class AssetController extends Controller {
 
     public function delete($id) {
         if ($this->assetModel->delete($id)) {
-            setFlash('success', 'Aset berhasil dihapus');
+            setFlash('success', 'Asset berhasil dihapus');
         } else {
-            setFlash('danger', 'Gagal menghapus aset');
+            setFlash('danger', 'Gagal menghapus asset');
         }
         $this->redirect('asset');
     }

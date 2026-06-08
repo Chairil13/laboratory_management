@@ -8,17 +8,17 @@
 
         <div class="space-y-6">
 
-            <!-- Daftar Aset -->
+            <!-- Daftar Asset -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="px-6 py-4 border-b border-white/30">
-                    <h5 class="font-semibold text-gray-800">Daftar Aset</h5>
+                    <h5 class="font-semibold text-gray-800">Daftar Asset</h5>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
                             <tr class="border-b border-white/30">
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode Aset</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Aset</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode Asset</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Asset</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Jumlah</th>
                             </tr>
                         </thead>
@@ -71,8 +71,8 @@
                                 'pending'        => 'Menunggu Verifikasi',
                                 'approved'       => 'Disetujui',
                                 'rejected'       => 'Ditolak',
-                                'returned'       => 'Returned',
-                                'cancelled'      => 'Cancelled',
+                                'returned'       => 'Dikembalikan',
+                                'cancelled'      => 'Dibatalkan',
                                 'pending_return' => 'Disetujui'
                             ];
                             ?>
@@ -177,3 +177,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

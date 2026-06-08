@@ -163,6 +163,36 @@ INSERT INTO `notifications` (`id`, `user_id`, `title`, `message`, `type`, `is_re
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `registration_requests`
+--
+
+CREATE TABLE IF NOT EXISTS `registration_requests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicant_type` enum('mahasiswa','dosen') NOT NULL DEFAULT 'mahasiswa',
+  `name` varchar(100) NOT NULL,
+  `nim` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `program_studi` varchar(100) NOT NULL,
+  `semester` varchar(20) DEFAULT NULL,
+  `class_name` varchar(50) DEFAULT NULL,
+  `reason` text DEFAULT NULL,
+  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `admin_notes` text DEFAULT NULL,
+  `reviewed_by` int(11) DEFAULT NULL,
+  `reviewed_at` datetime DEFAULT NULL,
+  `created_user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_registration_requests_status` (`status`),
+  KEY `idx_registration_requests_nim` (`nim`),
+  KEY `idx_registration_requests_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `returns`
 --
 

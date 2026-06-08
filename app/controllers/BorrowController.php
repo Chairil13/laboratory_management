@@ -42,7 +42,7 @@ class BorrowController extends Controller {
             for ($i = 0; $i < count($assetIds); $i++) {
                 $asset = $this->assetModel->getById($assetIds[$i]);
                 if (!$asset) {
-                    setFlash('danger', 'Aset tidak ditemukan');
+                    setFlash('danger', 'Asset tidak ditemukan');
                     $this->redirect('borrow/create');
                     return;
                 }

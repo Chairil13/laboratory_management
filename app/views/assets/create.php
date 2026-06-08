@@ -17,9 +17,9 @@ require_once '../app/views/layouts/header.php';
             <div class="glass-card rounded-3xl p-8">
                 <form action="<?= BASE_URL ?>asset/create" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Kode Aset -->
+                        <!-- Kode Asset -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Kode Aset *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Kode Asset *</label>
                             <input 
                                 type="text" 
                                 name="code" 
@@ -28,9 +28,9 @@ require_once '../app/views/layouts/header.php';
                             />
                         </div>
 
-                        <!-- Nama Aset -->
+                        <!-- Nama Asset -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Aset *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Asset *</label>
                             <input 
                                 type="text" 
                                 name="name" 
@@ -126,3 +126,6 @@ require_once '../app/views/layouts/header.php';
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

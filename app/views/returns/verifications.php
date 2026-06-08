@@ -11,18 +11,18 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-3xl font-bold text-gray-800">Verifikasi Pengembalian</h1>
-                    <p class="text-gray-600 mt-1">Kelola dan verifikasi pengembalian aset dari mahasiswa</p>
+                    <p class="text-gray-600 mt-1">Kelola dan verifikasi pengembalian asset dari mahasiswa</p>
                 </div>
             </div>
 
-            <!-- Pending Returns -->
+            <!-- Menunggu Pengembalian -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="px-6 py-4 border-b border-white/30 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="material-symbols-outlined text-amber-600 text-2xl">pending_actions</span>
                         <h5 class="font-semibold text-gray-800">Menunggu Verifikasi</h5>
                         <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">
-                            <?= count($pending_returns) ?> Pending
+                            <?= count($pending_returns) ?> Menunggu
                         </span>
                     </div>
                 </div>
@@ -206,3 +206,6 @@ document.getElementById('rejectModal').addEventListener('click', function(e) {
 </script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

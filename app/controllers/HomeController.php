@@ -6,7 +6,9 @@ class HomeController extends Controller {
         if ($this->isLoggedIn()) {
             $this->redirect('dashboard');
         } else {
-            $this->redirect('auth/login');
+            $this->view('home/index', [
+                'title' => 'Beranda'
+            ]);
         }
     }
 }

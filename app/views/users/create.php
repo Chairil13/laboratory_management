@@ -12,9 +12,9 @@
             <div class="glass-card rounded-3xl p-8">
                 <form action="<?= BASE_URL ?>user/create" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Full Name -->
+                        <!-- Nama Lengkap -->
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap *</label>
                             <input 
                                 type="text" 
                                 name="name" 
@@ -47,7 +47,7 @@
 
                         <!-- Username -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Username *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Pengguna *</label>
                             <input 
                                 type="text" 
                                 name="username" 
@@ -58,7 +58,7 @@
 
                         <!-- Password -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Kata Sandi *</label>
                             <input 
                                 type="password" 
                                 name="password" 
@@ -67,15 +67,15 @@
                             />
                         </div>
 
-                        <!-- Role -->
+                        <!-- Peran -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Role *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Peran *</label>
                             <select 
                                 name="role" 
                                 class="w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all" 
                                 required
                             >
-                                <option value="user">User</option>
+                                <option value="user">Pengguna</option>
                                 <option value="admin">Admin</option>
                                 <option value="kepala_lab">Kepala Lab</option>
                             </select>
@@ -89,14 +89,14 @@
                             class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all font-medium flex items-center gap-2"
                         >
                             <span class="material-symbols-outlined text-lg">save</span>
-                            Save User
+                            Simpan Pengguna
                         </button>
                         <a 
                             href="<?= BASE_URL ?>user" 
                             class="px-6 py-3 glass-card rounded-xl hover-lift text-gray-700 font-medium flex items-center gap-2"
                         >
                             <span class="material-symbols-outlined text-lg">arrow_back</span>
-                            Cancel
+                            Batal
                         </a>
                     </div>
                 </form>
@@ -106,3 +106,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

@@ -10,7 +10,7 @@
             <!-- Header -->
             <div>
                 <h1 class="text-3xl font-bold text-gray-800">Tambah Kategori</h1>
-                <p class="text-gray-600 mt-1">Buat kategori baru untuk mengorganisir aset laboratorium</p>
+                <p class="text-gray-600 mt-1">Buat kategori baru untuk mengorganisir asset laboratorium</p>
             </div>
 
             <!-- Form Card -->
@@ -52,8 +52,8 @@
                                 <p class="text-sm text-blue-800 font-medium">Tips Kategori</p>
                                 <ul class="text-sm text-blue-700 mt-1 space-y-1 list-disc list-inside">
                                     <li>Gunakan nama yang jelas dan mudah dipahami</li>
-                                    <li>Kategori akan muncul saat menambah aset baru</li>
-                                    <li>Kategori tidak bisa dihapus jika masih ada aset</li>
+                                    <li>Kategori akan muncul saat menambah asset baru</li>
+                                    <li>Kategori tidak bisa dihapus jika masih ada asset</li>
                                 </ul>
                             </div>
                         </div>
@@ -79,3 +79,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

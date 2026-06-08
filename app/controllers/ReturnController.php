@@ -18,7 +18,7 @@ class ReturnController extends Controller {
 
     public function index() {
         $data = [
-            'title' => 'Pengembalian Aset',
+            'title' => 'Pengembalian Asset',
             'returns' => $this->returnModel->getAllWithDetails()
         ];
 

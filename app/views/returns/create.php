@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="md:col-span-2 mt-2">
-                        <p class="text-sm font-medium text-gray-700 mb-2">Aset yang Dipinjam:</p>
+                        <p class="text-sm font-medium text-gray-700 mb-2">Asset yang Dipinjam:</p>
                         <ul class="space-y-1">
                             <?php foreach ($details as $detail): ?>
                                 <li class="flex items-center gap-2 text-sm text-gray-700">
@@ -60,13 +60,13 @@
                         <span class="material-symbols-outlined text-blue-600 text-xl">info</span>
                         <div class="flex-1">
                             <p class="text-sm text-blue-800 font-medium">Informasi Penting</p>
-                            <p class="text-sm text-blue-700 mt-1">Pengembalian Anda akan diverifikasi oleh admin terlebih dahulu. Pastikan kondisi aset sesuai dengan yang Anda laporkan.</p>
+                            <p class="text-sm text-blue-700 mt-1">Pengembalian Anda akan diverifikasi oleh admin terlebih dahulu. Pastikan kondisi asset sesuai dengan yang Anda laporkan.</p>
                         </div>
                     </div>
 
                     <form action="<?= BASE_URL ?>return/create/<?= $borrowing['id'] ?>" method="POST" class="space-y-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Kondisi Aset *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Kondisi Asset *</label>
                             <select name="condition" required
                                     class="w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all">
                                 <option value="baik">Baik</option>
@@ -102,3 +102,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

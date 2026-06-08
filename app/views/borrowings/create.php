@@ -36,15 +36,15 @@
 
                     <hr class="border-white/30">
 
-                    <h5 class="text-base font-semibold text-gray-800">Aset yang Dipinjam</h5>
+                    <h5 class="text-base font-semibold text-gray-800">Asset yang Dipinjam</h5>
 
                     <div id="assetItems" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end asset-item">
                             <div class="md:col-span-8">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Aset *</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Asset *</label>
                                 <select name="asset_id[]" required
                                         class="asset-select w-full px-4 py-3 form-input rounded-xl focus:outline-none transition-all">
-                                    <option value="">Pilih Aset</option>
+                                    <option value="">Pilih Asset</option>
                                     <?php foreach ($assets as $asset): ?>
                                         <option value="<?= $asset['id'] ?>" data-max="<?= $asset['available_quantity'] ?>">
                                             <?= $asset['name'] ?> (Tersedia: <?= $asset['available_quantity'] ?>)
@@ -68,7 +68,7 @@
                     <button type="button" id="addAsset"
                             class="flex items-center gap-2 px-4 py-2 glass-card rounded-xl text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
                         <span class="material-symbols-outlined text-lg">add_circle</span>
-                        Tambah Aset
+                        Tambah Asset
                     </button>
 
                     <hr class="border-white/30">
@@ -95,7 +95,7 @@
 // Set max quantity when asset is selected
 function bindSelectChange(select) {
     select.addEventListener('change', function() {
-        const max = this.options[this.selectedIndex]?.dataset.max || '';
+        const max = this.options[this.selectedIndex]?.datasset.max || '';
         const qtyInput = this.closest('.asset-item').querySelector('.quantity-input');
         qtyInput.max = max;
         qtyInput.placeholder = max ? 'Maks: ' + max : '';
@@ -143,3 +143,6 @@ function updateRemoveButtons() {
 </script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

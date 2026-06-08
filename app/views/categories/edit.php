@@ -10,7 +10,7 @@
             <!-- Header -->
             <div>
                 <h1 class="text-3xl font-bold text-gray-800">Edit Kategori</h1>
-                <p class="text-gray-600 mt-1">Update informasi kategori aset</p>
+                <p class="text-gray-600 mt-1">Perbarui informasi kategori asset</p>
             </div>
 
             <!-- Form Card -->
@@ -52,7 +52,7 @@
                             <div class="flex-1">
                                 <p class="text-sm text-amber-800 font-medium">Perhatian</p>
                                 <p class="text-sm text-amber-700 mt-1">
-                                    Perubahan nama kategori akan mempengaruhi semua aset yang menggunakan kategori ini.
+                                    Perubahan nama kategori akan mempengaruhi semua asset yang menggunakan kategori ini.
                                 </p>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <button type="submit"
                                     class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all font-medium flex items-center gap-2">
                                 <span class="material-symbols-outlined text-lg">save</span>
-                                Update Kategori
+                                Perbarui Kategori
                             </button>
                             <a href="<?= BASE_URL ?>category"
                                class="px-6 py-3 glass-card rounded-xl hover-lift text-gray-700 font-medium flex items-center gap-2">
@@ -78,3 +78,6 @@
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

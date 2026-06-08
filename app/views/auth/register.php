@@ -154,6 +154,75 @@
             transform: rotate(180deg) scale(1.1);
         }
     }
+
+    .auth-bg {
+        background:
+            radial-gradient(circle at 18px 18px, rgba(59, 36, 23, 0.08) 1.5px, transparent 1.5px),
+            linear-gradient(90deg, rgba(159, 47, 40, 0.08), transparent 30%, rgba(31, 107, 92, 0.1)),
+            #f3e6cf;
+        background-size: 24px 24px, auto, auto;
+    }
+
+    .auth-bg::before,
+    .auth-bg::after,
+    .shape-1,
+    .shape-2 {
+        display: none;
+    }
+
+    .auth-card {
+        background: #fff6df;
+        border: 2px solid #3b2417;
+        border-radius: 8px;
+        box-shadow: 10px 10px 0 rgba(59, 36, 23, 0.24);
+    }
+
+    .auth-card h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        color: #3b2417;
+        font-size: 2.2rem;
+    }
+
+    .auth-card header > div {
+        background: #9f2f28 !important;
+        border: 2px solid #3b2417;
+        border-radius: 8px;
+        box-shadow: 5px 5px 0 rgba(59, 36, 23, 0.22);
+    }
+
+    .auth-input {
+        background: rgba(255, 246, 223, 0.88);
+        border: 2px solid rgba(59, 36, 23, 0.35);
+        color: #24180f;
+        border-radius: 8px;
+    }
+
+    .auth-input:focus {
+        border-color: #9f2f28;
+        box-shadow: 0 0 0 3px rgba(159, 47, 40, 0.14);
+    }
+
+    .auth-label {
+        color: #3b2417;
+        font-family: Inter, sans-serif;
+    }
+
+    .btn-register {
+        background: #9f2f28;
+        border: 2px solid #3b2417;
+        border-radius: 8px;
+        box-shadow: 5px 5px 0 #3b2417;
+    }
+
+    .btn-register:hover {
+        background: #7f251f;
+        box-shadow: 5px 5px 0 #3b2417;
+    }
+
+    .grid-dots {
+        background-image: radial-gradient(rgba(59, 36, 23, 0.12) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
 </style>
 
 <div class="auth-bg flex items-center justify-center p-6">
@@ -171,8 +240,8 @@
             <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-1 shadow-lg" style="background: linear-gradient(135deg, #10b981, #0891b2);">
                 <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1; font-size: 30px;">person_add</span>
             </div>
-            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Registrasi Pengguna</h1>
-            <p class="text-sm text-gray-600">Buat akun baru untuk mengakses sistem</p>
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Pengajuan Akun Civitas Elektro</h1>
+            <p class="text-sm text-gray-600">Akun hanya dibuat setelah diverifikasi admin laboratorium.</p>
         </header>
 
         <!-- Flash Message -->
@@ -192,7 +261,7 @@
             </div>
         <?php endif; ?>
 
-        <!-- Register Form -->
+        <!-- Request Form -->
         <form action="<?= BASE_URL ?>auth/register" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             <!-- Nama Lengkap -->
@@ -208,13 +277,27 @@
                 />
             </div>
 
-            <!-- NIM/NIP -->
+            <!-- Applicant Type -->
             <div class="flex flex-col gap-1.5">
-                <label class="auth-label" for="nim_nip">NIM / NIP</label>
+                <label class="auth-label" for="applicant_type">Jenis Pemohon</label>
+                <select
+                    class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
+                    id="applicant_type"
+                    name="applicant_type"
+                    required
+                >
+                    <option value="mahasiswa">Mahasiswa</option>
+                    <option value="dosen">Dosen</option>
+                </select>
+            </div>
+
+            <!-- NIM -->
+            <div class="flex flex-col gap-1.5">
+                <label class="auth-label" for="nim">NIM / NIP</label>
                 <input 
                     class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
-                    id="nim_nip" 
-                    name="nim_nip" 
+                    id="nim" 
+                    name="nim" 
                     placeholder="" 
                     type="text"
                     required
@@ -234,57 +317,95 @@
                 />
             </div>
 
-            <!-- Username -->
-            <div class="flex flex-col gap-1.5">
-                <label class="auth-label" for="username">Username</label>
+            <!-- Phone -->
+            <div class="flex flex-col gap-1.5 md:col-span-2">
+                <label class="auth-label" for="phone">No. HP / WhatsApp</label>
                 <input 
                     class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
-                    id="username" 
-                    name="username" 
+                    id="phone" 
+                    name="phone" 
                     placeholder="" 
                     type="text"
-                    required
                 />
             </div>
 
-            <!-- Password -->
+            <!-- Program Studi -->
             <div class="flex flex-col gap-1.5">
-                <label class="auth-label" for="password">Password</label>
-                <div class="relative">
-                    <input 
-                        class="auth-input w-full rounded-lg py-2.5 pl-3 pr-10 text-base"
-                        id="password" 
-                        name="password" 
-                        placeholder="" 
-                        type="password"
-                        required
-                    />
-                    <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-xl" onclick="togglePassword('password', this)" tabindex="-1" aria-label="Toggle password visibility">
-                        <span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
-                    </button>
-                </div>
+                <label class="auth-label" for="program_studi">Program Studi Elektro</label>
+                <select
+                    class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
+                    id="program_studi"
+                    name="program_studi"
+                    required
+                >
+                    <option value="">Pilih program studi</option>
+                    <option value="Teknik Listrik D3">Teknik Listrik D3</option>
+                    <option value="Teknik Informatika D4">Teknik Informatika D4</option>
+                    <option value="Teknologi Rekayasa Sistem Kelistrikan Minyak dan Gas D4">Teknologi Rekayasa Sistem Kelistrikan Minyak dan Gas D4</option>
+                </select>
+            </div>
+
+            <!-- Semester -->
+            <div class="flex flex-col gap-1.5">
+                <label class="auth-label" for="semester">Semester</label>
+                <select
+                    class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
+                    id="semester"
+                    name="semester"
+                >
+                    <option value="">Pilih semester</option>
+                    <?php for ($i = 1; $i <= 8; $i++): ?>
+                        <option value="<?= $i ?>">Semester <?= $i ?></option>
+                    <?php endfor; ?>
+                </select>
+                <p class="text-xs text-gray-500 mt-1">Khusus mahasiswa. Dosen boleh mengosongkan bagian ini.</p>
+            </div>
+
+            <!-- Class -->
+            <div class="flex flex-col gap-1.5 md:col-span-2">
+                <label class="auth-label" for="class_name">Kelas</label>
+                <input 
+                    class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
+                    id="class_name" 
+                    name="class_name" 
+                    placeholder="Contoh mahasiswa: TL-2A. Dosen boleh dikosongkan." 
+                    type="text"
+                />
+                <p class="text-xs text-gray-500 mt-1">Khusus mahasiswa. Dosen boleh mengosongkan bagian ini.</p>
+            </div>
+
+            <!-- Reason -->
+            <div class="flex flex-col gap-1.5 md:col-span-2">
+                <label class="auth-label" for="reason">Keperluan Akses</label>
+                <textarea
+                    class="auth-input w-full rounded-lg py-2.5 px-3 text-base"
+                    id="reason"
+                    name="reason"
+                    rows="3"
+                    placeholder="Contoh: membutuhkan akses untuk peminjaman alat praktikum atau kegiatan perkuliahan"
+                ></textarea>
             </div>
 
             <!-- Submit Button -->
             <div class="md:col-span-2">
                 <button class="btn-register w-full py-3 rounded-xl flex items-center justify-center gap-2 text-base" type="submit">
-                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">person_add</span>
-                    Daftar
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">outgoing_mail</span>
+                    Kirim Pengajuan
                 </button>
             </div>
 
             <!-- Login Link -->
             <div class="md:col-span-2 text-center text-sm text-gray-600">
-                Sudah punya akun? 
+                Sudah diverifikasi admin dan punya akun? 
                 <a href="<?= BASE_URL ?>auth/login" class="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors">
-                    Login di sini
+                    Masuk di sini
                 </a>
             </div>
         </form>
 
         <!-- Footer -->
         <footer class="text-center text-xs border-t pt-5 text-gray-500" style="border-color: rgba(148, 163, 184, 0.2);">
-            <p>© 2024 Electrical Engineering Dept.</p>
+            <p>© 2026 Electrical Engineering Dept.</p>
             <p>Technical Laboratory System</p>
         </footer>
     </main>
@@ -305,3 +426,6 @@ function togglePassword(fieldId, btn) {
 </script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

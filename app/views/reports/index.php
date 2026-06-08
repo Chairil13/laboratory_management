@@ -44,7 +44,7 @@
                     <p class="text-3xl font-bold text-emerald-700"><?= count(array_filter($borrowings, fn($b) => $b['status'] === 'approved')) ?></p>
                 </div>
                 <div class="glass-stat rounded-2xl p-5">
-                    <p class="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">Pending</p>
+                    <p class="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">Menunggu</p>
                     <p class="text-3xl font-bold text-amber-700"><?= count(array_filter($borrowings, fn($b) => $b['status'] === 'pending')) ?></p>
                 </div>
                 <div class="glass-stat rounded-2xl p-5">
@@ -98,10 +98,10 @@
                 </div>
             </div>
 
-            <!-- Laporan Aset -->
+            <!-- Laporan Asset -->
             <div class="glass-card rounded-3xl overflow-hidden">
                 <div class="px-6 py-4 border-b border-white/30">
-                    <h5 class="font-semibold text-gray-800">Laporan Aset</h5>
+                    <h5 class="font-semibold text-gray-800">Laporan Asset</h5>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full">
@@ -109,7 +109,7 @@
                             <tr class="border-b border-white/30">
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">No</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Aset</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Asset</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kategori</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tersedia</th>
@@ -157,3 +157,6 @@
 </style>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

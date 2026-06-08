@@ -158,6 +158,75 @@
             transform: rotate(180deg) scale(1.1);
         }
     }
+
+    .auth-bg {
+        background:
+            radial-gradient(circle at 18px 18px, rgba(59, 36, 23, 0.08) 1.5px, transparent 1.5px),
+            linear-gradient(90deg, rgba(159, 47, 40, 0.08), transparent 30%, rgba(31, 107, 92, 0.1)),
+            #f3e6cf;
+        background-size: 24px 24px, auto, auto;
+    }
+
+    .auth-bg::before,
+    .auth-bg::after,
+    .shape-1,
+    .shape-2 {
+        display: none;
+    }
+
+    .auth-card {
+        background: #fff6df;
+        border: 2px solid #3b2417;
+        border-radius: 8px;
+        box-shadow: 10px 10px 0 rgba(59, 36, 23, 0.24);
+    }
+
+    .auth-card h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        color: #3b2417;
+        font-size: 2.2rem;
+    }
+
+    .auth-card header > div {
+        background: #9f2f28 !important;
+        border: 2px solid #3b2417;
+        border-radius: 8px;
+        box-shadow: 5px 5px 0 rgba(59, 36, 23, 0.22);
+    }
+
+    .auth-input {
+        background: rgba(255, 246, 223, 0.88);
+        border: 2px solid rgba(59, 36, 23, 0.35);
+        color: #24180f;
+        border-radius: 8px;
+    }
+
+    .auth-input:focus {
+        border-color: #9f2f28;
+        box-shadow: 0 0 0 3px rgba(159, 47, 40, 0.14);
+    }
+
+    .auth-label {
+        color: #3b2417;
+        font-family: Inter, sans-serif;
+    }
+
+    .btn-signin {
+        background: #9f2f28;
+        border: 2px solid #3b2417;
+        border-radius: 8px;
+        box-shadow: 5px 5px 0 #3b2417;
+    }
+
+    .btn-signin:hover {
+        background: #7f251f;
+        box-shadow: 5px 5px 0 #3b2417;
+    }
+
+    .grid-dots {
+        background-image: radial-gradient(rgba(59, 36, 23, 0.12) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
 </style>
 
 <div class="auth-bg flex items-center justify-center p-6">
@@ -176,7 +245,7 @@
                 <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1; font-size: 30px;">science</span>
             </div>
             <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Smart Lab MS</h1>
-            <p class="text-sm text-gray-600">Sign in to manage laboratory assets and approvals.</p>
+            <p class="text-sm text-gray-600">Masuk untuk mengelola asset laboratorium dan persetujuan peminjaman.</p>
         </header>
 
         <!-- Flash Message -->
@@ -201,7 +270,7 @@
             
             <!-- Username/Email Field -->
             <div class="flex flex-col gap-1.5">
-                <label class="auth-label" for="username">Username / Email</label>
+                <label class="auth-label" for="username">NIM/NIP/Email</label>
                 <div class="relative">
                     <span class="material-symbols-outlined auth-icon absolute left-3 top-1/2 -translate-y-1/2 text-xl">person</span>
                     <input 
@@ -219,9 +288,9 @@
             <!-- Password Field -->
             <div class="flex flex-col gap-1.5">
                 <div class="flex justify-between items-center">
-                    <label class="auth-label" for="password">Password</label>
+                    <label class="auth-label" for="password">Kata Sandi</label>
                     <a class="text-xs font-medium text-emerald-600 hover:text-emerald-700 transition-colors" href="#">
-                        Forgot password?
+                        Lupa password?
                     </a>
                 </div>
                 <div class="relative">
@@ -243,21 +312,21 @@
             <!-- Submit Button -->
             <button class="btn-signin mt-2 w-full py-3 rounded-xl flex items-center justify-center gap-2 text-base" type="submit">
                 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">login</span>
-                Sign In
+                Masuk
             </button>
 
             <!-- Register Link -->
             <div class="text-center text-sm text-gray-600">
-                Belum punya akun? 
+                Mahasiswa elektro belum punya akun? 
                 <a href="<?= BASE_URL ?>auth/register" class="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors">
-                    Daftar di sini
+                    Ajukan akun di sini
                 </a>
             </div>
         </form>
 
         <!-- Footer -->
         <footer class="text-center text-xs border-t pt-5 text-gray-500" style="border-color: rgba(148, 163, 184, 0.2);">
-            <p>© 2024 Electrical Engineering Dept.</p>
+            <p>© 2026 Electrical Engineering Dept.</p>
             <p>Technical Laboratory System</p>
         </footer>
     </main>
@@ -278,3 +347,6 @@ function togglePassword(fieldId, btn) {
 </script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

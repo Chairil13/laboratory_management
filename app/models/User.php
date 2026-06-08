@@ -19,6 +19,14 @@ class User extends Model {
         return $stmt->fetch();
     }
 
+    public function findByNimNip($nimNip) {
+        $query = "SELECT * FROM {$this->table} WHERE nim_nip = :nim_nip";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':nim_nip', $nimNip);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
     public function authenticate($username, $password) {
         $user = $this->findByUsername($username);
         

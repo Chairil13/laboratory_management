@@ -1,8 +1,8 @@
 <!-- Minimal Topbar -->
 <nav class="glass-card px-6 py-4 flex items-center justify-between mb-8 rounded-2xl relative z-40">
     <div>
-        <h1 class="text-2xl font-semibold text-gray-900"><?= $title ?? 'Dashboard' ?></h1>
-        <p class="text-sm text-gray-500 mt-0.5">Welcome back, manage your laboratory</p>
+        <h1 class="text-2xl font-semibold text-gray-900"><?= $title ?? 'Dasbor' ?></h1>
+        <p class="text-sm text-gray-500 mt-0.5">Selamat datang, kelola laboratorium Anda</p>
     </div>
     
     <div class="flex items-center gap-4">
@@ -16,14 +16,14 @@
         <div class="relative z-50" id="roleSwitcher">
             <button onclick="toggleRoleSwitcher()" class="flex items-center gap-2 px-4 py-2 glass-card rounded-xl hover-lift">
                 <span class="material-symbols-outlined text-emerald-600 text-lg">swap_horiz</span>
-                <span class="text-sm font-medium text-gray-700">Switch Role</span>
+                <span class="text-sm font-medium text-gray-700">Ganti Peran</span>
                 <span class="material-symbols-outlined text-gray-500 text-sm">expand_more</span>
             </button>
             
             <!-- Dropdown -->
             <div id="roleDropdown" class="hidden absolute right-0 mt-2 w-56 glass-card rounded-xl shadow-xl z-[100] overflow-hidden">
                 <div class="px-4 py-3 border-b border-white/30">
-                    <p class="text-xs text-gray-500 uppercase font-semibold">Active Roles</p>
+                    <p class="text-xs text-gray-500 uppercase font-semibold">Peran Aktif</p>
                 </div>
                 <?php foreach ($loggedInRoles as $role): ?>
                     <?php
@@ -50,7 +50,7 @@
                         <div class="flex-1">
                             <p class="text-sm font-medium text-gray-800"><?= $roleLabels[$role] ?></p>
                             <?php if ($isActive): ?>
-                                <p class="text-xs text-emerald-600 font-semibold">● Active</p>
+                                <p class="text-xs text-emerald-600 font-semibold">● Aktif</p>
                             <?php endif; ?>
                         </div>
                         <?php if ($isActive): ?>
@@ -89,3 +89,6 @@ document.addEventListener('click', function(event) {
     }
 });
 </script>
+
+
+

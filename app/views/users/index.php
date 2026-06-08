@@ -34,7 +34,7 @@ require_once '../app/views/layouts/header.php';
             <div class="flex justify-end">
                 <a href="<?= BASE_URL ?>user/create" class="glass-card px-6 py-3 rounded-xl hover-lift flex items-center gap-2 text-gray-700 hover:text-violet-600 transition-colors font-medium">
                     <span class="material-symbols-outlined">person_add</span>
-                    Add User
+                    Tambah Pengguna
                 </a>
             </div>
 
@@ -44,11 +44,11 @@ require_once '../app/views/layouts/header.php';
                     <table class="w-full">
                         <thead>
                             <tr class="border-b border-white/30">
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">NIM/NIP</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Username</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Role</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Pengguna</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Peran</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -103,3 +103,6 @@ require_once '../app/views/layouts/header.php';
 </div>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

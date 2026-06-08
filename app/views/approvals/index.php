@@ -159,3 +159,6 @@ function closeModal(id) {
 </script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>
+
+
+

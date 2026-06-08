@@ -161,13 +161,13 @@ class ReportController extends Controller {
                 </tbody>
             </table>
 
-            <h2>Laporan Aset</h2>
+            <h2>Laporan Asset</h2>
             <table>
                 <thead>
                     <tr>
                         <th style="width: 5%;">No</th>
                         <th style="width: 12%;">Kode</th>
-                        <th style="width: 28%;">Nama Aset</th>
+                        <th style="width: 28%;">Nama Asset</th>
                         <th style="width: 15%;">Kategori</th>
                         <th style="width: 8%;">Total</th>
                         <th style="width: 8%;">Tersedia</th>
@@ -177,7 +177,7 @@ class ReportController extends Controller {
                 </thead>
                 <tbody>
                     <?php if (empty($assets)): ?>
-                        <tr><td colspan="8" style="text-align: center; padding: 20px; color: #999;">Tidak ada data aset</td></tr>
+                        <tr><td colspan="8" style="text-align: center; padding: 20px; color: #999;">Tidak ada data asset</td></tr>
                     <?php else: ?>
                         <?php $no = 1; foreach ($assets as $asset): ?>
                             <tr>
